@@ -21,6 +21,8 @@ wget -q -O "$ball" "$url"
 tar xzf "$ball"
 sudo cp "$name/node_exporter" /usr/local/bin
 
+sudo useradd --no-create-home --system --shell /usr/sbin/nologin node_exporter || true
+
 sudo tee /etc/systemd/system/node-exporter.service <<'EOF' >/dev/null
 [Unit]
 Description=Prometheus Node Exporter Service
