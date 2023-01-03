@@ -3,7 +3,7 @@
 version=1.5.0
 
 arch=`uname -s -m`
-if [[ $arch == "inux aarch64" ]]; then
+if [[ $arch == "Linux aarch64" ]]; then
   variety="linux-arm64"
 elif [[ $arch == "Linux x86_64" ]]; then
   variety="linux-amd64"
