@@ -17,7 +17,7 @@ ball="${name}.tar.gz"
 url="https://github.com/prometheus/node_exporter/releases/download/v${version}/${ball}"
 
 cd /tmp
-if ! curl -s -o "$ball" "$url"; then
+if ! curl -sLo "$ball" "$url"; then
   echo "Failed to download $ball from $url"
   exit 1
 fi
