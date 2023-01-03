@@ -41,3 +41,4 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable node-exporter
+systemctl status node-exporter
