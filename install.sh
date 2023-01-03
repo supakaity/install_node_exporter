@@ -4,21 +4,29 @@ version=1.5.0
 
 arch=`uname -s -m`
 if [[ $arch == "Linux aarch64" ]]; then
-  variety="linux-arm64"
+  variant="linux-arm64"
 elif [[ $arch == "Linux x86_64" ]]; then
-  variety="linux-amd64"
+  variant="linux-amd64"
 else
-  echo Unknown arch $arch
+  echo Unknown variant $arch
   exit 1
 fi
 
-name="node_exporter-${version}.${variety}"
+name="node_exporter-${version}.${variant}"
 ball="${name}.tar.gz"
 url="https://github.com/prometheus/node_exporter/releases/download/v${version}/${ball}"
 
 cd /tmp
-curl -s -o "$ball" "$url"
+if ! curl -s -o "$ball" "$url"; then
+  echo "Failed to download $ball from $url"
+  exit 1
+fi
+
 tar xzf "$ball"
+if [[ ! -x "$name/node_exporter" ]]; then
+  echo "Cannot find node_exporter executable"
+  exit 1
+fi
 sudo cp "$name/node_exporter" /usr/local/bin
 
 sudo useradd --no-create-home --system --shell /usr/sbin/nologin node_exporter || true
