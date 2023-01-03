@@ -40,5 +40,5 @@ WantedBy=multi-user.target
 EOF
 
 sudo systemctl daemon-reload
-sudo systemctl enable node-exporter
+sudo systemctl enable node-exporter --now
 systemctl status node-exporter
