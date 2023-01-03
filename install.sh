@@ -17,7 +17,7 @@ ball="${name}.tar.gz"
 url="https://github.com/prometheus/node_exporter/releases/download/v${version}/${ball}"
 
 cd /tmp
-wget -q -O "$ball" "$url"
+curl -s -o "$ball" "$url"
 tar xzf "$ball"
 sudo cp "$name/node_exporter" /usr/local/bin
 
